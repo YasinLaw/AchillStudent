@@ -1,5 +1,6 @@
 package com.example.achill.data
 
+import com.example.achill.model.Gender
 import com.example.achill.model.Result
 import com.example.achill.model.Type
 import com.example.achill.model.User
@@ -15,6 +16,27 @@ class LoginDataSource {
         } catch (e: Exception) {
             return Result.Failure(e)
         }
+    }
+
+    fun register(mail: String,
+                 password: String,
+                 username: String,
+                 type: Type,
+                 gender: Gender): Result<User> {
+        try {
+            val registerUser = User(username = username,
+                mail = mail,
+                type = Type.UNKNOWN,
+                gender = gender)
+            fakeOp(registerUser, password)
+            return Result.Success(registerUser)
+        } catch (exception: Exception) {
+            return Result.Failure(exception)
+        }
+    }
+
+    fun fakeOp(user: User, password: String): Boolean {
+        return true
     }
 
     fun logout() {
