@@ -33,7 +33,6 @@ class RegisterActivity : AppCompatActivity() {
         model.registerResult.observe(this, Observer {
             if (it.success != null) {
                 finish()
-                Snackbar.make(login_layout, "注册成功", Snackbar.LENGTH_LONG).show()
             }
             if (it.failure != null) {
                 when (it.failure) {

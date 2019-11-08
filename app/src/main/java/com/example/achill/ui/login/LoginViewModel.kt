@@ -1,5 +1,6 @@
 package com.example.achill.ui.login
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -52,18 +53,15 @@ class LoginViewModel(val loginRepository: LoginRepository) : ViewModel() {
             _registerResult.postValue(RegisterResult(failure = 1))
             return
         }
-
+        if (!isUsernameValid(username)) {
+            _registerResult.postValue(RegisterResult(failure = 3))
+            return
+        }
         if (!isPasswordValid(password)) {
             _registerResult.postValue(RegisterResult(failure = 2))
             return
         }
-
-        if (!isUsernameValid(username)) {
-            _registerResult.postValue(RegisterResult(failure = 3))
-        }
-
         var result = loginRepository.register(mail, password, username, type, gender)
-
         if (result is Result.Success) {
             _registerResult.postValue(
                 RegisterResult(
@@ -86,11 +84,7 @@ class LoginViewModel(val loginRepository: LoginRepository) : ViewModel() {
     }
 
     private fun isUsernameValid(username: String): Boolean {
-        // TODO: fix bug
         val regex = Regex("^[a-zA-Z0-9]{5,16}$")
-        if (regex.matches(username)) {
-            return true
-        }
-        return false
+        return regex.matches(username)
     }
 }
