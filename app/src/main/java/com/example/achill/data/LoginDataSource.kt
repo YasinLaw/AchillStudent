@@ -9,7 +9,7 @@ class LoginDataSource {
     fun login(mail: String, password: String): Result<User> {
         try {
             // TODO: 储存token
-            val loggedInUser = User(username = mail,
+            val loggedInUser = User(username = "Dev",
                 type = Type.UNKNOWN,
                 mail = mail)
             return Result.Success(loggedInUser)
@@ -26,7 +26,7 @@ class LoginDataSource {
         try {
             val registerUser = User(username = username,
                 mail = mail,
-                type = Type.UNKNOWN,
+                type = type,
                 gender = gender)
             fakeOp(registerUser, password)
             return Result.Success(registerUser)

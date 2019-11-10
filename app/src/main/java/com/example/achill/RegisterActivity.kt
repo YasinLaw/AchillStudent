@@ -1,49 +1,64 @@
 package com.example.achill
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.RadioButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.achill.model.Gender
-import com.example.achill.model.Result
 import com.example.achill.model.Type
 import com.example.achill.model.User
 import com.example.achill.ui.login.LoginViewModel
 import com.example.achill.ui.login.LoginViewModelFactory
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
 
-    val model by lazy {
-        ViewModelProviders.of(this,
-            LoginViewModelFactory()
-        )[LoginViewModel::class.java]
+    private val model by lazy {
+        ViewModelProviders.of(this, LoginViewModelFactory())[LoginViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        val intent = intent
+        if (intent.hasExtra("mail")) {
+            register_mail.setText(intent.getStringExtra("mail"))
+        }
+        if (intent.hasExtra("password")) {
+            register_password.setText(intent.getStringExtra("password"))
+        }
+
         model.registerResult.observe(this, Observer {
             if (it.success != null) {
                 finish()
             }
             if (it.failure != null) {
-                when (it.failure) {
-                    1 ->  Snackbar.make(findViewById(R.id.register_layout), "邮箱地址格式错误", Snackbar.LENGTH_LONG).show()
-                    3 -> Snackbar.make(findViewById(R.id.register_layout), "用户名不合法", Snackbar.LENGTH_LONG).show()
-                    2 ->  Snackbar.make(findViewById(R.id.register_layout), "密码过短", Snackbar.LENGTH_LONG).show()
-                    400 ->  Snackbar.make(findViewById(R.id.register_layout), "登入失败", Snackbar.LENGTH_LONG).show()
-                    else -> Snackbar.make(findViewById(R.id.register_layout), "未知错误", Snackbar.LENGTH_LONG).show()
-                }
+                Snackbar.make(register_layout, it.failure, Snackbar.LENGTH_LONG).show()
             }
         })
+
+        register_password.setOnFocusChangeListener { _, hasFocus ->
+            run {
+                if (hasFocus) {
+                    register_password_layout.helperText = "* 密码长度须为6位及以上"
+                } else {
+                    register_password_layout.helperText = null
+                }
+            }
+        }
+
+        register_username.setOnFocusChangeListener { v, hasFocus ->
+            run {
+                if (hasFocus) {
+                    register_username_layout.helperText = "* 用户名长度须为5至16位，合法字符为A-Z、a-z、0-9"
+                } else {
+                    register_username_layout.helperText = null
+                }
+            }
+        }
     }
 
     fun registerOnClick(view: View) {

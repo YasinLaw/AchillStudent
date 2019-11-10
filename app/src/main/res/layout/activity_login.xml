@@ -26,7 +26,7 @@
             android:id="@+id/login_mail_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             app:endIconMode="clear_text"
             android:layout_marginVertical="5dp">
             <com.google.android.material.textfield.TextInputEditText
@@ -40,7 +40,7 @@
             android:id="@+id/login_password_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             app:endIconMode="password_toggle"
             android:layout_marginVertical="5dp">
             <com.google.android.material.textfield.TextInputEditText
@@ -54,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:gravity="right"
             android:paddingVertical="5dp">
 
             <com.google.android.material.button.MaterialButton
@@ -61,7 +62,6 @@
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:text="注册"
-                android:layout_weight="1"
                 android:onClick="registerOnClick"
                 android:layout_marginRight="5dp"/>
 
@@ -70,8 +70,7 @@
                 android:layout_height="wrap_content"
                 android:text="登入"
                 android:onClick="loginOnClick"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"/>
+                android:layout_marginLeft="5dp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
