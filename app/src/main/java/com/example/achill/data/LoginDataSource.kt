@@ -6,15 +6,15 @@ import com.example.achill.model.Type
 import com.example.achill.model.User
 
 class LoginDataSource {
-    fun login(mail: String, password: String): Result<User> {
-        try {
+    fun login(username: String, password: String): Result<User> {
+        return try {
             // TODO: 储存token
             val loggedInUser = User(username = "Dev",
                 type = Type.UNKNOWN,
-                mail = mail)
-            return Result.Success(loggedInUser)
+                mail = "yasinlaw@outlook.com")
+            Result.Success(loggedInUser)
         } catch (e: Exception) {
-            return Result.Failure(e)
+            Result.Failure(e)
         }
     }
 
@@ -23,19 +23,19 @@ class LoginDataSource {
                  username: String,
                  type: Type,
                  gender: Gender): Result<User> {
-        try {
+        return try {
             val registerUser = User(username = username,
                 mail = mail,
                 type = type,
                 gender = gender)
             fakeOp(registerUser, password)
-            return Result.Success(registerUser)
+            Result.Success(registerUser)
         } catch (exception: Exception) {
-            return Result.Failure(exception)
+            Result.Failure(exception)
         }
     }
 
-    fun fakeOp(user: User, password: String): Boolean {
+    private fun fakeOp(user: User, password: String): Boolean {
         return true
     }
 

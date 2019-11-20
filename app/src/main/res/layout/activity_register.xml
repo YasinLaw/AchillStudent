@@ -17,10 +17,9 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             app:endIconMode="clear_text"
             android:layout_marginVertical="5dp"
-            app:hintEnabled="false"
             app:helperTextEnabled="true">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/register_mail"
@@ -33,10 +32,9 @@
             android:id="@+id/register_username_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             app:endIconMode="clear_text"
             android:layout_marginVertical="5dp"
-            app:hintEnabled="false"
             app:helperTextEnabled="true">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/register_username"
@@ -49,10 +47,9 @@
             android:id="@+id/register_password_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             app:endIconMode="password_toggle"
             android:layout_marginVertical="5dp"
-            app:hintEnabled="false"
             app:helperTextEnabled="true">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/register_password"

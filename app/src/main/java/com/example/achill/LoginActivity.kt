@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : AppCompatActivity() {
 
     private val model by lazy {
-        ViewModelProviders.of(this)[LoginViewModel::class.java]
+        ViewModelProviders.of(this, LoginViewModelFactory())[LoginViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,13 +36,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun loginOnClick(view: View) {
-        model.login(login_mail.text.toString(), login_password.text.toString())
+        model.login(login_username.text.toString(), login_password.text.toString())
     }
 
     fun registerOnClick(view: View) {
         val intent = Intent(this, RegisterActivity::class.java)
-        if (login_mail.text != null) {
-            intent.putExtra("mail", login_mail.text.toString())
+        if (login_username.text != null) {
+            intent.putExtra("mail", login_username.text.toString())
         }
         if (login_password.text != null) {
             intent.putExtra("password", login_password.text.toString())
